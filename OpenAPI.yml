@@ -8,9 +8,9 @@ servers:
 paths:
   /account_summary/{id}:
     get:
-      summary:
-      description: Account Summary
-      operationId: Get a summary of account activity
+      summary: Account Summary
+      description: Get a summary of account activity
+      operationId: get_account_summary
       parameters:
         - name: id
           in: path
