@@ -1,4 +1,4 @@
-from random import random
+from random import random, randrange
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -49,19 +49,19 @@ def get_summaries() -> AccountSummaryList:
          summary='Account Summary',
          description='Get a summary of account activity',
          )
-async def get_account_summary() -> AccountSummary:
+async def get_account_summary(id: str) -> AccountSummary:
     for acc in account_summaries:
         if acc.id == id:
             return acc
 
     # Create a random account
-    rnd_fee = random(50,300)
-    rnd_interest = random(50, 3000)
-    rnd_points = random(500, 5000)
-    rnd_tx = random(1500, 50000)
+    rnd_fee = float(randrange(50,300, 50))
+    rnd_interest = float(randrange(50,3000, 100))
+    rnd_points = float(randrange(50,3000, 50))
+    rnd_tx = float(randrange(500,30000, 500))
 
-    summary = AccountSummary(id=id, fee=rnd_fee, interest=rnd_interest, points=rnd_points, transactions= rnd_tx)
-
+    random_summary = AccountSummary(id=id, fee=rnd_fee, interest=rnd_interest, points=rnd_points, transactions= rnd_tx)
+    return random_summary
 
 def use_route_names_as_operation_ids(app: FastAPI) -> None:
     """
