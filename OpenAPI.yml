@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: WxO Card Retention
+  description: WxO Card Retention Demo
+  version: 0.1.0
+servers:
+  - url: https://wxo-card-retention.1d13bpwyy9q7.us-east.codeengine.appdomain.cloud
+paths:
+  /account_summary/{id}:
+    get:
+      summary:
+      description: Account Summary
+      operationId: Get a summary of account activity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            title: id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountSummary'
+components:
+  schemas:
+    AccountSummary:
+      properties:
+        id:
+          type: string
+          title: Id
+        fee:
+          type: number
+          title: Fee
+        interest:
+          type: number
+          title: Interest
+        points:
+          type: number
+          title: Points
+        transactions:
+          type: number
+          title: Transactions
+      type: object
+      required:
+        - id
+        - fee
+        - interest
+        - points
+        - transactions
+      title: AccountSummary
+  securitySchemes:
+    HTTPBasic:
+      type: http
+      scheme: basic

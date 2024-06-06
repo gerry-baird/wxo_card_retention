@@ -5,7 +5,7 @@ from fastapi.security import HTTPBasic
 
 app = FastAPI()
 security = HTTPBasic()
-class Customer(BaseModel):
+class AccountSummary(BaseModel):
     id: str
     fee: float
     interest: float
@@ -14,15 +14,15 @@ class Customer(BaseModel):
 
 
 
-@app.get("/customer/{id}",
-         summary='Get a customer',
-         description='Get a customer',
+@app.get("/account_summary/{id}",
+         summary='Account Summary',
+         description='Get a summary of account activity',
          )
-async def get_customer() -> Customer:
+async def get_account_summary() -> AccountSummary:
 
-    customer = Customer(id="A1234", fee=200, interest=350, points=250, transactions=5000)
+    summary = AccountSummary(id="A1234", fee=200, interest=350, points=250, transactions=5000)
 
-    return customer
+    return summary
 
 
 def use_route_names_as_operation_ids(app: FastAPI) -> None:
